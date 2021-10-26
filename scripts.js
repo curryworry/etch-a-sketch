@@ -2,14 +2,21 @@ const canvas = document.querySelector('#canvas');
 const canvasWidth = canvas.offsetWidth;
 const slider = document.getElementById('grid-slider');
 const clearButton = document.getElementById('clr-btn');
+const colorPicker = document.getElementById('color-picker');
+let sketchColor = colorPicker.value;
+
 drawGrid();
 slider.addEventListener('input',drawGrid);
 clearButton.addEventListener('click',clearGrid);
-
+colorPicker.addEventListener('input',chooseSketchColor);
 
 function calcDimensions(numOfRows){
     let width = canvasWidth/numOfRows;
     return width;
+}
+
+function chooseSketchColor(e){
+    sketchColor = e.target.value;
 }
 
 function drawGrid(e){
@@ -38,8 +45,7 @@ function drawGrid(e){
 }
 
 function sketch(e){
-    console.log(e);
-    e.target.style.backgroundColor='black';
+    e.target.style.backgroundColor=sketchColor;
 }
 
 function clearGrid(){
