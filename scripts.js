@@ -15,14 +15,14 @@ randomButton.addEventListener('click',chooseMode);
 colorPicker.addEventListener('click',chooseMode);
 
 function chooseMode(e){
-    console.log(e);
+    //console.log(e);
     if(e.target.id=="random-btn"){
         paintMode = 'random';
-        console.log(paintMode);
+       // console.log(paintMode);
     }
     else if(e.target.id=="color-picker"){
         paintMode = 'single';
-        console.log(paintMode);
+       // console.log(paintMode);
     }
 }
 
@@ -38,7 +38,7 @@ function chooseBrushColor(e){
 function drawGrid(e){
     canvas.innerHTML='';
     let rowCount;
-    console.log(e);
+   // console.log(e);
     if(e){
     rowCount = e.target.value;
     }
@@ -70,11 +70,11 @@ function sketch(e){
     let paintR = Math.floor(Math.random() * 255) + 1;
     let paintG = Math.floor(Math.random() * 255) + 1;
     let paintB = Math.floor(Math.random() * 255) + 1;
+
     if(paintMode=='single'){
     e.target.style.backgroundColor=brushColor;
     }
     else if(paintMode=='random'){
-        console.log(`rgb(${paintR},${[paintG]},${paintB})`);
         e.target.style.backgroundColor=`rgb(${paintR},${[paintG]},${paintB})`;
     }
 }
@@ -84,11 +84,11 @@ function clearGrid(){
     drawGrid();
 }
 
-function hexToRgb(hex) {
+/*function hexToRgb(hex) {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
         let r= parseInt(result[1], 16);
         let g= parseInt(result[2], 16);
         let b= parseInt(result[3], 16);
         console.log(`rgb(${r},${g},${b})`);
         return `rgb(${r},${g},${b})`;
-}
+}*/
