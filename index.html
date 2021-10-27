@@ -14,12 +14,19 @@
 <body>
     <div id="container">
         <div id="options">
-            <div class="slidecontainer">
+            <div id="slide-container" class="options-container">
+                <p class="options-text">Choose Grid Size</p>
                 <p id="grid-size-value"></p>
                 <input type="range" min="1" max="100" value="16" class="slider" id="grid-slider">
             </div>
-            <button type="button" id="clr-btn">Clear Grid</button>
-            <input type="color" id="color-picker" name="color-picker" value="#ff0000">
+            <div id="color-container" class="options-container">
+                <p class="options-text">Choose Color</p>
+                <input type="color" id="color-picker" name="color-picker" value="#ff0000">
+            </div>
+            <div id="random-mode">
+                <button type="button" id="random-btn" class="btn">Random Colors</button>
+            </div>
+            <button type="button" id="clr-btn" class="btn">Clear Grid</button>
         </div>
         <div id="canvas">
 
