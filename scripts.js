@@ -17,14 +17,11 @@ colorPicker.addEventListener('click',chooseMode);
 eraserButton.addEventListener('click',chooseMode);
 
 function chooseMode(e){
-    //console.log(e);
     if(e.target.id=="random-btn"){
         paintMode = 'random';
-       // console.log(paintMode);
     }
     else if(e.target.id=="color-picker"){
         paintMode = 'single';
-       // console.log(paintMode);
     }
 
     else if(e.target.id=="eraser-btn"){
@@ -67,12 +64,6 @@ function drawGrid(e){
 }
 
 function sketch(e){
-    /*let brushRgbColor = hexToRgb(brushColor);
-    let currentCellColor = e.target.style.backgroundColor;
-    let rgbCellColor = currentCellColor.match(/\d+/g);
-    if(rgbCellColor){console.log(`Current cell color in RGB is ${rgbCellColor[0]}`);}
-    console.log(`Current Cell Color is ${currentCellColor}`);
-    console.log(`Brush color is ${brushColor}`);*/
     let paintR = Math.floor(Math.random() * 255) + 1;
     let paintG = Math.floor(Math.random() * 255) + 1;
     let paintB = Math.floor(Math.random() * 255) + 1;
@@ -81,7 +72,17 @@ function sketch(e){
     e.target.style.backgroundColor=brushColor;
     }
     else if(paintMode=='random'){
-        e.target.style.backgroundColor=`rgb(${paintR},${[paintG]},${paintB})`;
+        if(e.target.style.filter==''){
+            let filterString = 'brightness(1)';
+            e.target.style.filter = filterString;
+            e.target.style.backgroundColor=`rgb(${paintR},${[paintG]},${paintB})`;
+        }
+        else{
+        let filterString = e.target.style.filter;
+        let filterValue = filterString.split('(')[1].split(')')[0];
+        filterValue = filterValue - 0.1;
+        e.target.style.filter=`brightness(${filterValue})`;
+        }
     }
     else if(paintMode=='eraser'){
         e.target.style.backgroundColor='rgb(240,239,239)';
@@ -92,12 +93,3 @@ function clearGrid(){
     canvas.innerHTML='';
     drawGrid();
 }
-
-/*function hexToRgb(hex) {
-    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        let r= parseInt(result[1], 16);
-        let g= parseInt(result[2], 16);
-        let b= parseInt(result[3], 16);
-        console.log(`rgb(${r},${g},${b})`);
-        return `rgb(${r},${g},${b})`;
-}*/
