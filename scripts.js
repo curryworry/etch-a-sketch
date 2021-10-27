@@ -4,6 +4,7 @@ const slider = document.getElementById('grid-slider');
 const clearButton = document.getElementById('clr-btn');
 const colorPicker = document.getElementById('color-picker');
 const randomButton = document.getElementById('random-btn');
+const eraserButton = document.getElementById('eraser-btn');
 let brushColor = colorPicker.value;
 let paintMode = 'single';
 
@@ -13,6 +14,7 @@ clearButton.addEventListener('click',clearGrid);
 colorPicker.addEventListener('input',chooseBrushColor);
 randomButton.addEventListener('click',chooseMode);
 colorPicker.addEventListener('click',chooseMode);
+eraserButton.addEventListener('click',chooseMode);
 
 function chooseMode(e){
     //console.log(e);
@@ -23,6 +25,10 @@ function chooseMode(e){
     else if(e.target.id=="color-picker"){
         paintMode = 'single';
        // console.log(paintMode);
+    }
+
+    else if(e.target.id=="eraser-btn"){
+        paintMode = 'eraser';
     }
 }
 
@@ -76,6 +82,9 @@ function sketch(e){
     }
     else if(paintMode=='random'){
         e.target.style.backgroundColor=`rgb(${paintR},${[paintG]},${paintB})`;
+    }
+    else if(paintMode=='eraser'){
+        e.target.style.backgroundColor='rgb(240,239,239)';
     }
 }
 
